@@ -15,8 +15,8 @@ export default function TextForm(props){
     }
 
     const copyToClipboard = () => {
-        var temp = document.getElementById("myBox");
-        temp.select();
+       // var temp = document.getElementById("myBox");
+        //temp.select();
         navigator.clipboard.writeText(text);
         props.showAlert("Copied to clipboard", "success");
     }
@@ -55,8 +55,8 @@ export default function TextForm(props){
         
         <div className="my-3"> 
             <h4> Your text summary </h4>
-            <p> {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters </p>
-            <p> {(text.split(" ").filter((element)=>{return element.length!==0}).length)*0.008} minutes read</p>
+            <p> {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters </p>
+            <p> {(text.split(/\s+/).filter((element)=>{return element.length!==0}).length)*0.008} minutes read</p>
         </div>
 
         <div className="my-3"> 

@@ -19,7 +19,7 @@ export default function About(props) {
                 </button>
                 </h2>
                 <div id="collapseOne" style={myStyle} className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div className="accordion-body" >
+                    <div className="accordion-body">
                         TextUtils is a single page application which helps you analyse your text efficiently. It provides features such as word count, character count, trim spaces. Dark mode of the app is also available
                     </div>
                 </div>
