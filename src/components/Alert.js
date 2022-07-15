@@ -7,9 +7,11 @@ export default function Alert(props){
     };
 
     return (
+        <div style={{height:"50px"}}>{
         props.alert && // If this one evaluates to NULL, second one won't even be evaluated
         <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
             <strong>{capitalise(props.alert.type)}:</strong> {props.alert.msg}
+        </div>}
         </div>
     );
 }

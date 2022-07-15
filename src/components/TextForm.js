@@ -27,6 +27,11 @@ export default function TextForm(props){
         props.showAlert("Extraspaces removed", "success");
     }
 
+    const handleClear = () => {
+        setText("");
+        props.showAlert("Text cleared", "success");
+    }
+
     const handleOnChange = (event) => {
         setText(event.target.value);
     }
@@ -36,20 +41,27 @@ export default function TextForm(props){
         <>
         <div className="container" style={{color : props.mode==='light'?'#042743':'white'}}>
         <div className="mb-3">
-            <h4>{props.heading}</h4>
+            <h4 className="mb-4">{props.heading}</h4>
             <textarea className="form-control" id="myBox" style={{
-                backgroundColor: props.mode==='light'?'white':'grey',
+                backgroundColor: props.mode==='light'?'white':'#13466e',
                 color: props.mode==='light'?'#042743':'white'
             }} rows="3" value={text} onChange={handleOnChange}></textarea>
         </div>
-        <button type="button" className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
-        <button type="button" className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
-        <button type="button" className="btn btn-primary mx-1" onClick={copyToClipboard}>Copy to Clipboard</button>
-        <button type="button" className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove extra spaces</button>
+        <button type="button" disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
+        <button type="button" disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>Convert to Lowercase</button>
+        <button type="button" disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={copyToClipboard}>Copy to Clipboard</button>
+        <button type="button" disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>Remove extra spaces</button>
+        <button type="button" disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClear}>Clear text</button>
+        
         <div className="my-3"> 
             <h4> Your text summary </h4>
-            <p> {text.length>0 ? text.trim().split(" ").length : 0} words and {text.length} characters </p>
-            <p> {(text.length>0 ? text.trim().split(" ").length : 0)*0.008} minutes read</p>
+            <p> {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters </p>
+            <p> {(text.split(" ").filter((element)=>{return element.length!==0}).length)*0.008} minutes read</p>
+        </div>
+
+        <div className="my-3"> 
+            <h4> Preview </h4>
+            {text.length===0?"Nothing to preview":text}
         </div>
         </div>
         </>
